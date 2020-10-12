@@ -54,9 +54,9 @@ export default {
   }),
   methods: {
     setArt() {
-      const id = this.$route.params.id;
+      const id = parseInt(this.$route.params.id);
       if (id) {
-        this.$bind("art", arts.where("edition", "==", `${id}`));
+        this.$bind("art", arts.where("edition", "==", id));
       }
     }
   },
