@@ -50,7 +50,7 @@ export default {
   computed: {
     startForm() {
       return {
-        edition: `${this.artsLength + 1}`,
+        edition: parseInt(`${this.artsLength + 1}`),
         name: `#${this.artsLength + 1} `,
         img: "",
       };

@@ -30,7 +30,7 @@ export default {
     }
   },
   firestore: {
-    arts: db.collection('arts').orderBy('edition')
+    arts: db.collection('arts').orderBy('edition', "asc")
   }
 };
 </script>

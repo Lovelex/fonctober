@@ -1,5 +1,5 @@
 <template>
-  <v-sheet color="black" width="100%">
+  <v-sheet width="100%">
     <div class="pa-4">
       <v-chip
         v-for="(art,i) in arts"

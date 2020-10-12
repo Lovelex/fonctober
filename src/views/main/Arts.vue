@@ -10,9 +10,25 @@
       <div v-if="art[0]" class="text-center my-4">
         <h2 class="black--text text-h3">{{ art[0].label }}</h2>
       </div>
-      <v-sheet v-if="art[0]" max-width="100%" max-height="1080" class="img-wrapper d-flex justify-center">
-        <v-img aspect-ratio="1.777" v-if="art[0].img" :src="art[0].img" />
-        <v-img aspect-ratio="1.777" v-if="!art[0].img" src="../../assets/svg/art-not-found.svg" />
+      <v-sheet
+        v-if="art[0]"
+        max-width="100%"
+        max-height="1080"
+        class="img-wrapper d-flex justify-center"
+      >
+        <v-dialog v-if="art[0].img">
+          <template v-slot:activator="{ on }">
+            <v-img v-on="on" contain :src="art[0].img" />
+          </template>
+          <v-card tile>
+            <v-img contain aspect-ratio="1.777" :src="art[0].img" />
+          </v-card>
+        </v-dialog>
+        <v-img
+          aspect-ratio="1.777"
+          v-if="!art[0].img"
+          src="../../assets/svg/art-not-found.svg"
+        />
       </v-sheet>
     </v-container>
     <v-container v-if="!art">
@@ -31,10 +47,10 @@ const arts = db.collection("arts");
 
 export default {
   components: {
-    ChipMenus,
+    ChipMenus
   },
   data: () => ({
-    art: null,
+    art: null
   }),
   methods: {
     setArt() {
@@ -42,16 +58,16 @@ export default {
       if (id) {
         this.$bind("art", arts.where("edition", "==", `${id}`));
       }
-    },
+    }
   },
   watch: {
     "$route.params.id": {
       immediate: true,
       handler() {
         this.setArt();
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>
 
